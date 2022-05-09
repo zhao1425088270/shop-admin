@@ -1,47 +1,76 @@
 
+<!-- <script  lang="ts">
+import { ref, defineComponent, PropType, onMounted } from 'vue'
+
+interface User{
+  name:string
+  age:number
+}
+
+export default defineComponent({
+  name: 'HelloWorld',
+  props: {
+    msg: {
+      type: String,
+      required: true
+    },
+    obj: {
+      type: Object as PropType<User>,
+      de3fault: () => {}
+    }
+  },
+  setup: (props) => {
+    console.log(props.obj?.name)
+    const count = ref(0)
+    const foo = ref<{
+      a:Number
+      b:String
+    }| null>(null)
+    foo.value = {
+      a: 1,
+      b: 'hello'
+    }
+
+    onMounted(() => {
+      console.log(foo.value)
+    })
+    const title = ref<HTMLHeadElement | null>(null)
+    return {
+      count,
+      title
+    }
+  }
+})
+</script> -->
+
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a
-      href="https://code.visualstudio.com/"
-      target="_blank"
-    >VS Code</a>
-    +
-    <a
-      href="https://github.com/johnsoncodehk/volar"
-      target="_blank"
-    >Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a
-      href="https://vitejs.dev/guide/features.html"
-      target="_blank"
-    >
-      Vite Docs
-    </a>
-    |
-    <a
-      href="https://v3.vuejs.org/"
-      target="_blank"
-    >Vue 3 Docs</a>
-  </p>
-
-  <button
-    type="button"
-    @click="count++"
-  >
-    count is: {{ count }}
-  </button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+<h1>hellow hhfajdhf</h1>
+  <h1 ref="title">{{ props.msg }}</h1>
+  <p>count is: {{ count }}</p>
+ <button @click="increment">加</button>
 </template>
+
+<script lang="ts" setup>
+import { ref, defineProps, defineEmits } from 'vue'
+const count = ref(100)
+
+// 获取父级数据
+const props = defineProps({
+  msg: {
+    type: String,
+    default: ''
+  }
+})
+
+const emit = defineEmits(['increment'])
+
+// 按钮
+const increment = () => {
+  console.log(props.msg)
+  count.value++
+  emit('increment')
+}
+</script>
 
 <style scoped>
 a {
